@@ -1,0 +1,37 @@
+package org.tribenet.tribenet.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.tribenet.tribenet.dto.LoginDTO;
+import org.tribenet.tribenet.dto.RegisterDTO;
+import org.tribenet.tribenet.service.AuthService;
+
+@RestController
+@RequestMapping("/api/v1/auth")
+public class AuthController {
+
+    private AuthService service;
+
+    AuthController(AuthService service){
+        this.service = service;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegisterDTO dto){
+        return service.registerUser(dto);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO dto) {
+        return service.loginUser(dto);
+    }
+
+    @GetMapping("hello")
+    public String SayHello(){
+        return "Hello from auth";
+    }
+}
