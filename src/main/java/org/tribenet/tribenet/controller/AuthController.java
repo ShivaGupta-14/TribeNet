@@ -30,8 +30,4 @@ public class AuthController {
         return service.loginUser(dto);
     }
 
-    @GetMapping("hello")
-    public String SayHello(){
-        return "Hello from auth";
-    }
 }
